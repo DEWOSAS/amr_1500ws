@@ -1,0 +1,16 @@
+{
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/install/facobot_msg/lib/python3.10/site-packages",
+        "${workspaceFolder}/install/facobot_module/lib/python3.10/site-packages",
+        "${workspaceFolder}/src/facobot_system/facobot_module",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/src/facobot_system/facobot_module",
+        "${workspaceFolder}/install/facobot_system/facobot_module",
+        "/home/babartos/ros2_forstudies/install/my_robot_interface/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

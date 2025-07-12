@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+          "${workspaceFolder}/install/facobot_system/include",
+          "${workspaceFolder}/build/facobot_msg/rosidl_generator_cpp",
+          "${workspaceFolder}/build/facobot_system/rosidl_generator_cpp",
+          "/home/babartos/amr_1500ws/install/facobot_msg/include/**",
+          "/opt/ros/humble/include/**",
+          "/usr/include/**"
+      ],
+      "name": "ros2",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}

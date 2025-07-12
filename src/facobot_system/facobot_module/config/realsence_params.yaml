@@ -1,0 +1,8 @@
+realsense2_camera_node:
+  ros__parameters:
+    clip_distance: 5.0
+    enable_depth: true
+    enable_color: true
+    depth_width: 640
+    depth_height: 480
+    depth_fps: 30

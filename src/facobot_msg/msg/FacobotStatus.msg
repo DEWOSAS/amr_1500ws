@@ -1,0 +1,12 @@
+std_msgs/String task_name
+std_msgs/String map_name
+std_msgs/String map_zone
+std_msgs/String mode
+std_msgs/String status
+std_msgs/String error_code
+std_msgs/Float32 position_x
+std_msgs/Float32 position_y
+std_msgs/Float32 position_angle
+std_msgs/Float32 battery_level
+std_msgs/Float32 mileage
+std_msgs/Float32 work_time

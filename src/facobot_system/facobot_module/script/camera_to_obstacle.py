@@ -113,8 +113,9 @@ class camera_to_obstacle(Node):
 						weight = struct.pack("B",self.image[index])+struct.pack("B",self.image[index+1])
 						weight = struct.unpack("<H",weight)[0]
 
+					weight * 2
 					reject = 0
-					if weight >= 15:
+					if weight >= 10:
 						if first_point == 0:
 							body_point=1
 							first_point = 1

@@ -1,0 +1,2 @@
+std_msgs/Float32 battery_level
+std_msgs/Float32 battery_current

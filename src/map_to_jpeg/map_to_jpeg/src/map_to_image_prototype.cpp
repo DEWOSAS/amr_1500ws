@@ -135,47 +135,9 @@ void lasercallback(const sensor_msgs::msg::LaserScan::SharedPtr msg) {
       }
       angle += scan_->angle_increment;
     }
-    int crop_width = 640;
-    int crop_height = 480;
-
-     int half_crop_h = crop_width/2;
-    int half_crop_w = crop_height/2;
-      // --- Crop ภาพให้หุ่นยนต์อยู่ตรงกลาง ---
-    int x_start = std::max(0, px - half_crop_w);
-    int y_start = std::max(0, py - half_crop_h);
-
-
-    if (map_image.cols < 640 || map_image.rows < 480) {
-    RCLCPP_WARN(this->get_logger(), "Map too small to crop: %dx%d", map_image.cols, map_image.rows);
-    auto msg = cv_bridge::CvImage(std_msgs::msg::Header(), "rgb8", map_image).toImageMsg();
-    msg->header.frame_id = "map";
-    msg->header.stamp = this->get_clock()->now();
-    image_pub_.publish(msg);
-    return;
-    }
-    // ตรวจไม่ให้ crop ล้นขอบภาพ
-    if (x_start + crop_width > width) {
-        x_start = width - crop_width;
-    }
-    if (y_start + crop_height > height) {
-        y_start = height - crop_height;
-    }
-
-    // ตรวจอีกครั้ง (เพื่อไม่ให้ติดค่าติดลบ)
-    x_start = std::max(0, x_start);
-    y_start = std::max(0, y_start);
-
-    cv::Rect roi(x_start, y_start, crop_width, crop_height);
-    cv::Mat cropped = map_image(roi);
-
-    // เปลี่ยนภาพที่จะ publish เป็น cropped
-    cv::Mat output_image;
-    cv::resize(cropped, output_image, cv::Size(crop_width, crop_height)); // Optional: ขยายภาพ
-
-
 
     // แปลงภาพเป็น ROS message และ publish
-    auto msg = cv_bridge::CvImage(std_msgs::msg::Header(), "rgb8", output_image).toImageMsg();
+    auto msg = cv_bridge::CvImage(std_msgs::msg::Header(), "rgb8", map_image).toImageMsg();
     msg->header.frame_id = "map";
     msg->header.stamp = this->get_clock()->now();
     image_pub_.publish(msg);

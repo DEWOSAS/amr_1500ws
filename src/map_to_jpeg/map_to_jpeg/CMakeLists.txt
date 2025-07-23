@@ -20,6 +20,7 @@ include_directories(
   include
   ${OpenCV_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIRS}
+  
 )
 
 add_executable(map_to_image_node src/map_to_image_node.cpp)

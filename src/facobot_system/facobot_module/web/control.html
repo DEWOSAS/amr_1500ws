@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AMR200</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+
+    <!-- Ros Lib -->
+    <script src="minjs/roslib.min.js"></script>
+    <script src="minjs/eventemitter2.min.js"></script>
+    <script src="minjs/keyboardteleop.min.js"></script>
+    <!-- <script src="minjs/nipple.min.js"></script> -->
+    <script src="minjs/nipplejs.min.js"></script>
+
+    <!-- Back End -->
+    <script src="control.js"></script>
+
+</head>
+
+<body class="bg-info">
+    <div class="container bg-light">
+        <div class="row"></div>
+        <div class="row my-4">
+            <div class="col-md-2"></div>
+            <div class=" col-md-8">
+                <center>
+                <label for="robot-speed">
+                    <strong><h2>FACOBOT WEB SERVICE</h2></strong>
+                </label>
+                </center>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <!-- VIDEO -->
+        <div class="row my-4">
+            <div class="col d-flex justify-content-center">
+                <img src="" class="img-fluid p-1 bg-dark" alt="" id="video" />
+            </div>
+        </div>
+
+        <!-- SPEED -->
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class=" col-md-4">
+                <label for="robot-speed">
+                    <strong>Robot speed</strong>
+                </label>
+                <input type="range" min="20" max="80" class="custom-range" id="robot-speed">
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+        <!-- JOYSTICK -->
+        <div class="row my-4">
+            <div class="col">
+                <div class="col d-flex justify-content-center">
+                    <div id="joystick" style="width: 100%; max-width: 210px; height: 210px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INFO -->
+        <div class="row my-4">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="alert alert-success">
+                    <!-- <h4 class="alert-heading"><center>DESCRIPTION</center></h4>
+                    <center>
+                    <ul>
+                        <li>set speed using a slider</li>
+                        <li>use joystick move</li>
+                    </ul>
+                    </center> -->
+                    <h4 class="alert-heading"><center>Task Select</center></h4>
+                    <center>
+                        <button id='click1' class="btn btn-success">Task1</button>
+                        <button id='click2' class="btn btn-success">Task2</button>
+                        <button id='click3' class="btn btn-success">Task3</button>
+                        <button id='click4' class="btn btn-success">Task4</button>
+                    </center>
+                    <br>
+                    </center>
+                    <h4 class="alert-heading"><center>Page</center></h4>
+                    <center>
+                        <button class="btn btn-success" onclick="document.location='/'">Home</button>
+                        <button class="btn btn-success" onclick="document.location='mapping.html'">Mapping</button>
+                        <!-- <button class="btn btn-success" onclick="document.location='deploy'">Deploy</button> -->
+                    </center>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/babartos/ros2_forstudies/install/my_py_pkg/lib/python3.10/site-packages",
+        "/home/babartos/ros2_forstudies/install/my_robot_interface/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/babartos/ros2_forstudies/install/my_py_pkg/lib/python3.10/site-packages",
+        "/home/babartos/ros2_forstudies/install/my_robot_interface/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

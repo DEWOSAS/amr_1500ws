@@ -12,7 +12,7 @@
     <!-- Ros Lib -->
     <script src="minjs/roslib.min.js"></script>
     <script src="minjs/eventemitter2.min.js"></script>
-    <script src="minjs/keyboardteleop.min.js"></script>
+    <script src="/minjs/keyboardteleop.min.js"></script>
     <!-- <script src="minjs/nipple.min.js"></script> -->
     <script src="minjs/nipplejs.min.js"></script>
 
@@ -76,6 +76,7 @@
                         <li>use joystick move</li>
                     </ul>
                     </center> -->
+
                     <h4 class="alert-heading"><center>Task Select</center></h4>
                     <center>
                         <button id='click1' class="btn btn-success">Task1</button>
@@ -84,7 +85,19 @@
                         <button id='click4' class="btn btn-success">Task4</button>
                     </center>
                     <br>
+                    <center>
+                     <button id="map1" class="btn btn-success">Select Map</button>
+                     <input type="file" id="folderInput" multiple style="display:none" />
+
+                    <!-- Input ที่ซ่อนอยู่ -->
+                    <!-- <input type="file" id="folderInput" accept="pgm" multiple style="display:none" /> -->
                     </center>
+                    <br>
+                    <center>
+                        <button id='startnav2' class="btn btn-success">Start</button>
+                        <button id='endnav2' class="btn btn-success">End</button>
+                    </center>
+                    <br>
                     <h4 class="alert-heading"><center>Page</center></h4>
                     <center>
                         <button class="btn btn-success" onclick="document.location='/'">Home</button>

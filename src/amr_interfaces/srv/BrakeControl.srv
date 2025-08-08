@@ -1,0 +1,7 @@
+# Request
+bool enable  # true = engage brake, false = release brake
+
+---
+# Response
+bool success
+string message

@@ -12,4 +12,19 @@ find_package(std_msgs REQUIRED)
 find_package(facobot_msg REQUIRED)  
 find_package(geometry_msgs REQUIRED)
 
+# ...existing code...
+# ติดตั้ง Python script
+install(PROGRAMS
+  script/amr_web_server.py
+  script/test_mappath.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# ติดตั้งโฟลเดอร์ web ไปยัง share path
+install(DIRECTORY web/
+  DESTINATION share/${PROJECT_NAME}/web
+)
+
+# ...existing code...
+
 ament_package()

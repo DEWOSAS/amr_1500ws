@@ -1,0 +1,41 @@
+amcl:
+  ros__parameters:
+    use_sim_time: true # ใช้เวลาใน simulation
+    tf_broadcast: true
+
+    # Frames
+    global_frame_id: map
+    odom_frame_id: odom
+    base_frame_id: base_link
+    scan_topic: scan   # ถ้า LiDAR ไม่ใช่ /scan ให้ remap ตอน launch
+  
+    # Motion model (ตัวอย่างสำหรับ differential)
+    odom_model_type: "diff-corrected"
+    odom_alpha1: 0.2
+    odom_alpha2: 0.2
+    odom_alpha3: 0.2
+    odom_alpha4: 0.2
+    odom_alpha5: 0.1
+
+    # Laser sensor model
+    laser_model_type: "likelihood_field"
+    z_hit: 0.95
+    z_rand: 0.05
+    sigma_hit: 0.2
+    laser_likelihood_max_dist: 2.0
+
+    # Particles & update
+    min_particles: 500
+    max_particles: 2000
+    resample_interval: 1
+    update_min_a: 0.2
+    update_min_d: 0.25
+
+    set_initial_pose: true
+    initial_pose: [0.0, 0.0, 0.0]        # x, y, yaw (radians)
+    initial_covariance: [0.25, 0.25, 0.45]  # var_x, var_y, var_yaw
+
+map_server:
+  ros__parameters:
+    use_sim_time: true
+    yaml_filename: /home/babartos/amr_1500ws/src/upload_image/testmap02/testmap02.yaml

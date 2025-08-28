@@ -1,0 +1,4 @@
+map_to_control_node:
+  ros__parameters:
+    crop_width: 640
+    crop_height: 480

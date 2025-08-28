@@ -6,13 +6,13 @@ import os
 def generate_launch_description():
     # หา path ของแพ็กเกจ facobot_module
     pkg_module = get_package_share_directory('facobot_module')
-    params_file = os.path.join(pkg_module, 'config', 'amr_server_params.yaml')
+    params_file = os.path.join(pkg_module, 'config', 'plc_communication.yaml')
     
     return LaunchDescription([
         Node(
             package='facobot_module',
-            executable='amr_web_server.py',
-            name='web_server',
+            executable='plc_communication.py',
+            name='modbus_plc',
             output='screen',
             parameters=[params_file]
         )

@@ -1,0 +1,9 @@
+modbus_plc:
+  ros__parameters:
+      modbus_server_ip: "192.168.50.116"
+      modbus_init_output: "00000000"
+      battery_level_warnng: 40.0
+      module: ""
+      module_timeout: 25.00
+      battery_level_alarm: 20.0
+      simulate_offline: True

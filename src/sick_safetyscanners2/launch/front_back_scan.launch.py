@@ -13,7 +13,7 @@ def generate_launch_description():
             parameters=[
                 {"frame_id": "back_scan",
                  "sensor_ip": "192.168.50.14",
-                 "host_ip": "192.168.50.107",
+                 "host_ip": "192.168.50.10",
                  "interface_ip": "0.0.0.0",
                  "host_udp_port": 0,
                  "channel": 0,
@@ -47,7 +47,7 @@ def generate_launch_description():
             parameters=[
                 {"frame_id": "front_scan",
                  "sensor_ip": "192.168.50.13",
-                 "host_ip": "192.168.50.107",
+                 "host_ip": "192.168.50.10",
                  "interface_ip": "0.0.0.0",
                  "host_udp_port": 0,
                  "channel": 0,

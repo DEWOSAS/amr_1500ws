@@ -2,111 +2,116 @@
 <html>
 <head>
     <title>AMR200</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 
-    <!-- Ros Lib -->
-    <script src="minjs/roslib.min.js"></script>
+    <script src="minjs/easeljs.min.js"></script>
     <script src="minjs/eventemitter2.min.js"></script>
-    <script src="/minjs/keyboardteleop.min.js"></script>
-    <!-- <script src="minjs/nipple.min.js"></script> -->
+    <script src="minjs/roslib.min.js"></script>
+    <script src="minjs/ros2d.min.js"></script>
+    <script src="minjs/three.min.js"></script>
     <script src="minjs/nipplejs.min.js"></script>
+    <script src="minjs/nav2d.js"></script>
 
     <!-- Back End -->
     <script src="control.js"></script>
-
 </head>
 
 <body class="bg-info">
-    <div class="container bg-light">
+    <div class="container bg-light p-4 rounded shadow">
         <div class="row"></div>
-        <div class="row my-4">
-            <div class="col-md-2"></div>
-            <div class=" col-md-8">
-                <center>
-                <label for="robot-speed">
-                    <strong><h2>FACOBOT WEB SERVICE</h2></strong>
-                </label>
-                </center>
-            </div>
-            <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h2><strong>FACOBOT WEB SERVICE</strong></h2>
         </div>
 
-        <!-- VIDEO -->
-        <div class="row my-4">
+        <!-- Video -->
+        <div class="row mb-4">
             <div class="col d-flex justify-content-center">
-                <img src="" class="img-fluid p-1 bg-dark" alt="" id="video" />
+                <img src="" class="p-1 bg-dark rounded" alt="Robot Video" id="video" width="640" height="480">
             </div>
         </div>
 
-        <!-- SPEED -->
-        <div class="row">
+        <!-- Robot Speed -->
+        <div class="row mb-4">
             <div class="col-md-4"></div>
-            <div class=" col-md-4">
-                <label for="robot-speed">
-                    <strong>Robot speed</strong>
-                </label>
+            <div class="col-md-4 text-center">
+                <label for="robot-speed"><strong>Robot Speed</strong></label>
                 <input type="range" min="20" max="80" class="custom-range" id="robot-speed">
             </div>
             <div class="col-md-4"></div>
         </div>
 
-        <!-- JOYSTICK -->
-        <div class="row my-4">
-            <div class="col">
-                <div class="col d-flex justify-content-center">
-                    <div id="joystick" style="width: 100%; max-width: 210px; height: 210px;"></div>
+        <!-- Joystick -->
+        <div class="row mb-4">
+            <div class="col text-center">
+                <div id="joystick" style="width: 210px; height: 210px; margin: auto;"></div>
+            </div>
+        </div>
+
+        <!-- Set Pose -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white text-center">
+                <strong>Set Pose</strong>
+            </div>
+            <div class="card-body">
+                <div class="form-row text-center">
+                    <div class="form-group col-md-4">
+                        <label for="poseX">X</label>
+                        <input type="number" id="poseX" class="form-control" placeholder="X">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="poseY">Y</label>
+                        <input type="number" id="poseY" class="form-control" placeholder="Y">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="poseYaw">Yaw</label>
+                        <input type="number" id="poseYaw" class="form-control" placeholder="Yaw (deg)">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button id="sendPoseBtn" class="btn  btn-success">Send Pose</button>
+                    <button id='cancleGoal' class="btn  btn-danger">Cancle Goal</button>
                 </div>
             </div>
         </div>
 
-        <!-- INFO -->
-        <div class="row my-4">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="alert alert-success">
-                    <!-- <h4 class="alert-heading"><center>DESCRIPTION</center></h4>
-                    <center>
-                    <ul>
-                        <li>set speed using a slider</li>
-                        <li>use joystick move</li>
-                    </ul>
-                    </center> -->
-
-                    <h4 class="alert-heading"><center>Task Select</center></h4>
-                    <center>
-                        <button id='click1' class="btn btn-success">Task1</button>
-                        <button id='click2' class="btn btn-success">Task2</button>
-                        <button id='click3' class="btn btn-success">Task3</button>
-                        <button id='click4' class="btn btn-success">Task4</button>
-                    </center>
-                    <br>
-                    <center>
-                     <button id="map1" class="btn btn-success">Select Map</button>
-                     <input type="file" id="folderInput" multiple style="display:none" />
-
-                    <!-- Input ที่ซ่อนอยู่ -->
-                    <!-- <input type="file" id="folderInput" accept="pgm" multiple style="display:none" /> -->
-                    </center>
-                    <br>
-                    <center>
-                        <button id='startnav2' class="btn btn-success">Start</button>
-                        <button id='endnav2' class="btn btn-success">End</button>
-                    </center>
-                    <br>
-                    <h4 class="alert-heading"><center>Page</center></h4>
-                    <center>
-                        <button class="btn btn-success" onclick="document.location='/'">Home</button>
-                        <button class="btn btn-success" onclick="document.location='mapping.html'">Mapping</button>
-                        <!-- <button class="btn btn-success" onclick="document.location='deploy'">Deploy</button> -->
-                    </center>
-                </div>
+        <!-- Task Select -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white text-center">
+                <strong>Task Select</strong>
             </div>
-            <div class="col-md-2"></div>
+            <div class="card-body text-center">
+                <button id='click1' class="btn btn-success m-1">Task 1</button>
+                <button id='click2' class="btn btn-success m-1">Task 2</button>
+                <button id='click3' class="btn btn-success m-1">Task 3</button>
+                <button id='click4' class="btn btn-success m-1">Task 4</button>
+            </div>
+        </div>
+
+        <!-- Map & Navigation -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark text-center">
+                <strong>Map & Navigation</strong>
+            </div>
+            <div class="card-body text-center">
+                <button id="map1" class="btn btn-primary m-1">Select Map</button>
+                <input type="file" id="folderInput" multiple style="display:none" />
+                <br><br>
+                <button id='startnav2' class="btn btn-success m-1">Start</button>
+                <button id='endnav2' class="btn btn-danger m-1">End</button>
+            </div>
+        </div>
+
+        <!-- Page Navigation -->
+        <div class="text-center">
+            <button class="btn btn-secondary m-1" onclick="document.location='/'">Home</button>
+            <button class="btn btn-secondary m-1" onclick="document.location='/mapping'">Mapping</button>
+            <button class="btn btn-secondary m-1" onclick="document.location='/showio'">I/O Monitor</button>
         </div>
     </div>
 </body>

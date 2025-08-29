@@ -1,0 +1,9 @@
+web_server :
+  ros__parameters:
+      # ถ้าไปรันหุ่นใหม่ก็มาเปลี่ยน path รัน mapping ตัวนี้
+      launch_cmd_mapping: "source /home/babartos/mir_ws/install/setup.bash && ros2 launch mir_navigation mapping.py use_sim_time:=true slam_params_file:=$(ros2 pkg prefix mir_navigation)/share/mir_navigation/config/mir_mapping_async_sim.yaml"
+      # ถ้าไปรันหุ่นใหม่ก็มาเปลี่ยน path รัน nav2 ตัวนี้
+      launch_cmd_nav2: "source /home/babartos/mir_ws/install/setup.bash && ros2 launch mir_navigation navigation.py use_sim_time:=true"
+      web_ip: "172.16.0.210" # IP ของ web server ที่จะรัน
+      UPLOAD_ROOT: "/home/babartos/mir_ws/src/facobot_system/facobot_module/upload" # path ที่จะเก็บไฟล์ที่อัพโหลด
+      map_dir: "/home/babartos/mir_ws/src/facobot_system/facobot_module/upload/maps" # path ที่จะเก็บไฟล์ map ที่แปลงแล้ว

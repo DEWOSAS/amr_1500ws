@@ -19,10 +19,14 @@ def generate_launch_description():
             os.path.join(pkg_server, 'launch', 'amr_server.launch.py')
         )
     )
-
-    map_to_jpeg_action = IncludeLaunchDescription(
+    map_to_jpeg_action_mapping = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_map, 'launch', 'map_to_image.launch.py')
+        )
+    )
+    map_to_jpeg_aciton_control = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_map, 'launch', 'map_to_control.launch.py')
         )
     )
     web_video_server_node = Node(
@@ -44,7 +48,7 @@ def generate_launch_description():
     ld = LaunchDescription()
     ld.add_action(server_action)
     ld.add_action(web_video_server_node)
-    ld.add_action(map_to_jpeg_action)
+    ld.add_action(map_to_jpeg_action_mapping)
     ld.add_action(ros_bridge_node)
-
+    ld.add_action(map_to_jpeg_aciton_control)
     return ld

@@ -3,12 +3,13 @@
 <head>
     <title>AMR200</title>
     <!-- Required meta tags -->
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 
+    <!-- Frontend Libs -->
     <script src="minjs/easeljs.min.js"></script>
     <script src="minjs/eventemitter2.min.js"></script>
     <script src="minjs/roslib.min.js"></script>
@@ -17,80 +18,59 @@
     <script src="minjs/nipplejs.min.js"></script>
     <script src="minjs/nav2d.js"></script>
 
+    <!-- Custom JS -->
     <script src="mapping.js"></script>
-
 </head>
 
 <body class="bg-info">
-    <div class="container bg-light">
-        <div class="row"></div>
-        <div class="row my-4">
-            <div class="col-md-2"></div>
-            <div class=" col-md-8">
-                <center>
-                <label for="robot-speed">
-                    <strong><h2>FACOBOT WEB SERVICE</h2></strong>
-                </label>
-                </center>
-            </div>
-            <div class="col-md-2"></div>
+    <div class="container bg-light p-4 rounded shadow">
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h2><strong>FACOBOT WEB SERVICE</strong></h2>
         </div>
 
-        <!-- VIDEO -->
-        <div class="row my-4">
+        <!-- Video -->
+        <div class="row mb-4">
             <div class="col d-flex justify-content-center">
-                <img src="" class="img-fluid p-1 bg-dark" alt="" id="video" />
-                <!-- <img src="" width="640" height="480" class="p-1 bg-dark" alt="" id="video" /> -->
+                <img src="" class="p-1 bg-dark rounded" alt="Robot Video" id="video" width="640" height="480">
             </div>
         </div>
 
-        <!-- SPEED -->
-        <div class="row">
+        <!-- Robot Speed -->
+        <div class="row mb-4">
             <div class="col-md-4"></div>
-            <div class=" col-md-4">
-                <label for="robot-speed">
-                    <strong>Robot speed</strong>
-                </label>
+            <div class="col-md-4 text-center">
+                <label for="robot-speed"><strong>Robot Speed</strong></label>
                 <input type="range" min="20" max="80" class="custom-range" id="robot-speed">
             </div>
             <div class="col-md-4"></div>
         </div>
 
-        <!-- JOYSTICK -->
-        <div class="row my-4">
-            <div class="col">
-                <div class="d-flex justify-content-center" style="width: 210px; height: 210px;">
-                    <div id="joystick"></div>
-                </div>
+        <!-- Joystick -->
+        <div class="row mb-4">
+            <div class="col text-center">
+                <div id="joystick" style="width: 210px; height: 210px; margin: auto;"></div>
             </div>
         </div>
 
-        <!-- INFO -->
-        <div class="row my-4">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="alert alert-success">
-                    <h4 class="alert-heading"><center>SAVE MAP</center></h4>
-                        <center>
-                            <button class="btn btn-success" onclick="document.location='start'">Start</button>
-                            <!-- <button class="btn btn-success" onclick="document.location='save'">Save</button> -->
-                            <button class="btn btn-success" id="save">Save</button>
-                            <button class="btn btn-success" onclick="document.location='end'">End</button>
-                            <br>
-                            <!-- <button class="btn btn-success" id=toggle-btn">Pause / Resume</button> -->
-                            <br>
-                        </center>   
-                    <h4 class="alert-heading"><center>ACTION</center></h4>
-                        <center>
-                            <button class="btn btn-success" onclick="document.location='/'">Home</button>
-                            <button class="btn btn-success" onclick="document.location='control.html'">Control</button>
-                            <!-- <button class="btn btn-success" onclick="document.location='deploy'">Deploy</button> -->
-                        </center>
-                </div>
+        <!-- Map Control -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white text-center">
+                <strong>Save Map</strong>
             </div>
-            <div class="col-md-2"></div>
+            <div class="card-body text-center">
+                <button class="btn btn-success m-1" onclick="document.location='start'">Start</button>
+                <button class="btn btn-success m-1" id="save">Save</button>
+                <button class="btn btn-danger m-1" onclick="document.location='end'">End</button>
+            </div>
         </div>
-        <div class="row"></div>
-	</div>
+
+        <!-- Page Navigation -->
+        <div class="text-center">
+            <button class="btn btn-secondary m-1" onclick="document.location='/'">Home</button>
+            <button class="btn btn-secondary m-1" onclick="document.location='/control'">Control</button>
+            <button class="btn btn-secondary m-1" onclick="document.location='/showio'">I/O Monitor</button>
+        </div>
+    </div>
 </body>
 </html>

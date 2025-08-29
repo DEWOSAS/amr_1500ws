@@ -11,13 +11,23 @@ find_package(rclpy REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(facobot_msg REQUIRED)  
 find_package(geometry_msgs REQUIRED)
-
+find_package(rosidl_default_generators REQUIRED)
 # ...existing code...
 # ติดตั้ง Python script
 install(PROGRAMS
   script/amr_web_server.py
-  script/test_mappath.py
+  script/plc_communication.py
+  script/camera_to_obstacle.py
   DESTINATION lib/${PROJECT_NAME}
+)
+install(DIRECTORY
+  config
+  DESTINATION share/${PROJECT_NAME}
+)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "srv/SafetyConfig.srv"
+   DEPENDENCIES std_msgs
 )
 
 # ติดตั้งโฟลเดอร์ web ไปยัง share path

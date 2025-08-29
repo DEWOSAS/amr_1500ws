@@ -10,22 +10,22 @@
     <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
 
 </head>
+    <script src="minjs/easeljs.min.js"></script>
+    <script src="minjs/eventemitter2.min.js"></script>
+    <script src="minjs/roslib.min.js"></script>
+    <script src="minjs/ros2d.min.js"></script>
+    <script src="minjs/three.min.js"></script>
+    <script src="minjs/nipplejs.min.js"></script>
+    <script src="minjs/nav2d.js"></script>
 
 <body class="bg-info">
-    <div class="container bg-light">
+    <div class="container bg-light p-4 rounded shadow">
         <!-- SPEED -->
         <div class="row"></div>
-
-        <div class="row my-4">
-            <div class="col-md-2"></div>
-            <div class=" col-md-8">
-                <center>
-                <label for="robot-speed">
-                    <strong><h2>FACOBOT WEB SERVICE</h2></strong>
-                </label>
-                </center>
-            </div>
-            <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h2><strong>FACOBOT WEB SERVICE</strong></h2>
         </div>
 
         <!-- FACOBOT IMAGE -->
@@ -36,24 +36,23 @@
         </div>
 
         <!-- INFO -->
-        <div class="row my-4">
+        <div class="card mb-4">
             <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="alert alert-success">
-                    <h4 class="alert-heading"><center>ACTION</center></h4>
-                        <center>
-                            <button class="btn btn-success" onclick="document.location='mapping.html'">Mapping</button>
-                            <button class="btn btn-success" onclick="document.location='control.html'">Control</button>
-                            <!-- <button class="btn btn-success" onclick="document.location='deploy'">Deploy</button> -->
-                        </center>
+                <div class="card-header bg-success text-white text-center">
+                    <h4><strong>Action</strong></h4>
+                    </div>
+                        <div class="card-body text-center">
+                            <button  class="btn btn-secondary m-1" onclick="document.location='/mapping'">Mapping</button>
+                            <button  class="btn btn-secondary m-1" onclick="document.location='/control'">Control</button>
+                            <button  class="btn btn-secondary m-1" onclick="document.location='/showio'">I/O Monitor</button>
+                        </div>
                     <!-- <ul>
                         <li><a href="control.html">Control</a></li>
                         <li><a href="mapping.html">Mapping</a></li>
                         <button onclick="document.location='control.html'">Control</button>
                         <button onclick="document.location='mapping.html'">Mapping</button>
                     </ul> -->
-                </div>
-            </div>  
+            </div>   
             <div class="col-md-2"></div>
         </div>
     </div>

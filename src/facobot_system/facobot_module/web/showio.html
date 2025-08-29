@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PLC Monitor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS (ใส่ path ให้ถูกกับของคุณ) -->
+  <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+
+  <!-- roslib.js -->
+  <script src="minjs/roslib.min.js"></script>
+
+  <!-- สคริปต์โชว์ IO -->
+  <script defer src="showio.js"></script>
+</head>
+
+<body class="bg-info">
+  <div class="container bg-light p-4 rounded shadow">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="m-0"><strong>PLC DIN / DOUT Monitor</strong></h2>
+      <span id="wsStatus" class="badge badge-secondary">DISCONNECTED</span>
+    </div>
+
+  <div class="row">
+  <!-- DIN -->
+  <div class="col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-header bg-primary text-white text-center">
+        <strong>Digital Inputs (DIN)</strong>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped text-center" id="dinTable">
+          <thead class="thead-light">
+            <tr><th>Pin</th><th>Status</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOUT -->
+  <div class="col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-header bg-warning text-dark text-center">
+        <strong>Digital Outputs (DOUT)</strong>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped text-center" id="doutTable">
+          <thead class="thead-light">
+            <tr><th>Pin</th><th>Status</th><th>Action</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="text-center">
+      <button class="btn btn-secondary m-1" onclick="document.location='/'">Home</button>
+      <button class="btn btn-secondary m-1" onclick="document.location='/control'">Control</button>
+      <button class="btn btn-secondary m-1" onclick="document.location='/mapping'">Mapping</button>
+    </div>
+  </div>
+</body>
+</html>

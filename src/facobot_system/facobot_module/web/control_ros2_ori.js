@@ -6,6 +6,9 @@ var manager;
 var ros;
 var scale = 0.5;
 var lin = 0;
+var navActionClient;   // ✅ ประกาศ global
+var goal; 
+var goalPoseTopic;
 var ang = 0;
 // var tid = setInterval(sendVelocity, 66); //15Hz
 
@@ -20,8 +23,15 @@ function initWebInputPublisher() {
 		name: '/tcp_recv',
 		messageType: 'std_msgs/String'
 	});
+
+  	goalPoseTopic = new ROSLIB.Topic({
+        ros: ros,
+        name: '/goal_pose',  // topic ที่ bt_navigator ฟังอยู่
+        messageType: 'geometry_msgs/PoseStamped'
+    });
 	// Register publisher within ROS system
 	web_topic.advertise();
+	goalPoseTopic.advertise();
 }
 
 function initClick() {
@@ -228,6 +238,15 @@ function MapSelection() {
 		//-----------------------------------การทำงานของปุ่มอัปโหลดไฟล์ข-------------------------------//
     }
 }
+    function yawToQuaternion(yawDeg) {
+    var yaw = yawDeg * Math.PI / 180.0;
+    return {
+        x: 0.0,
+        y: 0.0,
+        z: Math.sin(yaw / 2.0),
+        w: Math.cos(yaw / 2.0)
+    };
+}
 
 // function uploadPGM(file) {
 //     const formData = new FormData();
@@ -249,28 +268,32 @@ function MapSelection() {
 // }
 
 function uploadMap(pgmFile, yamlFile) {
-	const formData = new FormData();
-	formData.append("pgm", pgmFile);
-	formData.append("yaml", yamlFile);
+  const formData = new FormData();
+  formData.append("pgm", pgmFile);
+  formData.append("yaml", yamlFile);
 
-	fetch("/upload_map", {
-		method: "POST",
-		body: formData
-	})
-	.then(response => {
-		if (!response.ok) throw new Error("Upload failed");
-		return response.text();
-	})
-	.then(result => {
-		alert("✅ อัปโหลดสำเร็จ: " + result);
-		console.log("Upload result:", result);
-	})
-	.catch(error => {
-		alert("❌ อัปโหลดล้มเหลว: " + error.message);
-		console.error("Upload error:", error);
-	});
+  fetch("/upload_map", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("Upload failed");
+    return response.json();  // ✅ รับเป็น JSON
+  })
+  .then(async (data) => {
+    // ✅ บันทึกค่าไว้ใน localStorage
+    try {
+      localStorage.setItem("latestMapDir", data.map_dir);
+      localStorage.setItem("latestMapYaml", data.yaml);
+    } catch (e) {}
+
+    alert(`✅ อัปโหลดสำเร็จ:\n${data.map_dir}`);
+  })
+  .catch(error => {
+    alert("❌ อัปโหลดล้มเหลว: " + error.message);
+    console.error("Upload error:", error);
+  });
 }
-
 
 
 
@@ -334,7 +357,7 @@ window.onload = function () {
 	// Populate video source 
 	// video.src = "http://" + robot_IP + ":8080/stream?topic=/camera/camera/color/image_raw&type=mjpeg&quality=80";
 	// video.src = "http://" + robot_IP + ":5000/stream?topic=/camera/image_raw&type=mjpeg&quality=80";
-	video.src = "http://" + robot_IP + ":8080/stream?topic=/map_image/full&type=mjpeg&quality=80";	
+	video.src = "http://" + robot_IP + ":8080/stream?topic=/map_to_page_control/full&type=mjpeg&quality=80";	
 	//video.style.transform = "rotate(180deg)";
 
 	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -354,8 +377,59 @@ window.onload = function () {
 	initSlider();
 	MapSelection();
 
+	
+	document.getElementById("sendPoseBtn").addEventListener("click", function() {
+    var x = parseFloat(document.getElementById("poseX").value);
+    var y = parseFloat(document.getElementById("poseY").value);
+    var yaw = parseFloat(document.getElementById("poseYaw").value);
+
+    var quat = yawToQuaternion(yaw);
+
+    var poseMsg = new ROSLIB.Message({
+        header: {
+            frame_id: 'map',
+            stamp: { sec: 0, nanosec: 0 } // rosbridge จะเติม timestamp ให้เอง
+        },
+        pose: {
+            position: { x: x, y: y, z: 0.0 },
+            orientation: quat
+        }
+    });
+
+    goalPoseTopic.publish(poseMsg);
+    console.log("🚀 Published PoseStamped goal:", poseMsg);	
+	});
+
 
 	
+	document.getElementById("cancleGoal").addEventListener("click", function() {
+    if (goal) {
+        goal.cancel();
+        console.log("🛑 Goal canceled");
+    } else {
+        console.warn("⚠️ ยังไม่มี goal ที่ active");
+    }
+	});
+
+	document.getElementById("startnav2").addEventListener("click", async () => {
+    try {
+        const res = await fetch("/start_nav");
+        const text = await res.text();
+        alert(text);   // ✅ แสดง popup เมื่อ start nav
+    } catch (err) {
+        alert("❌ Error starting navigation: " + err);
+    }
+	});
+
+	document.getElementById("endnav2").addEventListener("click", async () => {
+    try {
+        const res = await fetch("/end_nav");
+        const text = await res.text();
+        alert(text);   // ✅ แสดง popup เมื่อ end nav
+    } catch (err) {
+        alert("❌ Error ending navigation: " + err);
+    }
+	});
 	// video.onload = function () {
 	//     // joystick and keyboard controls will be available only when video is correctly loaded
 	// };

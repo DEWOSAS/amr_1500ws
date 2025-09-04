@@ -12,5 +12,10 @@
         "/home/babartos/ros2_forstudies/install/my_robot_interface/local/lib/python3.10/dist-packages",
         "/opt/ros/humble/lib/python3.10/site-packages",
         "/opt/ros/humble/local/lib/python3.10/dist-packages"
-    ]
+    ],
+    "files.associations": {
+        "geometry": "cpp",
+        "functional": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/babartos/amr_1500ws/src/amr_bringup"
 }

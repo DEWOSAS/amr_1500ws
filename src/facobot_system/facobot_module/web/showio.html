@@ -13,9 +13,50 @@
 
   <!-- สคริปต์โชว์ IO -->
   <script defer src="showio.js"></script>
+  <style>
+    :root { --row-h: 44px; } /* ปรับได้ตามชอบ: 36px, 40px, 48px ฯลฯ */
+
+    /* ทำให้ตารางไม่ยืดแปลก ๆ และจัดกึ่งกลางแนวตั้งง่ายขึ้น */
+    #dinTable, #doutTable { table-layout: fixed; width: 100%; }
+    #dinTable th, #dinTable td, #doutTable th, #doutTable td { padding: .5rem; }
+
+    /* หุ้มเนื้อหาใน cell ด้วยคอนเทนเนอร์ที่ "ล็อก" ความสูงไว้ */
+    .io-cell {
+      height: var(--row-h);
+      display: flex;
+      align-items: center;   /* จัดกึ่งกลางแนวตั้ง */
+      justify-content: center; /* เอาให้เนียน ๆ ทั้งข้อความและปุ่ม */
+      overflow: hidden;        /* กันบวมถ้ามีข้อความยาว */
+      text-overflow: ellipsis;
+      white-space: nowrap;     /* ไม่ให้ขึ้นบรรทัดใหม่ */
+    }
+
+    /* คอลัมน์ปุ่ม: เว้นช่องระหว่างปุ่มเล็กน้อย */
+    .io-actions { gap: .4rem; }
+
+    /* ปรับปุ่มให้กระชับขึ้น จะได้ไม่ดันแถวให้สูงเกินจำเป็น */
+      .btn-io,
+      .btn-io.btn-sm {
+        padding: .38rem .90rem;   /* สูง/กว้างขึ้นเล็กน้อย */
+        font-size: 1rem;          /* ตัวอักษรใหญ่ขึ้นนิด */
+        line-height: 1.25;
+        min-width: 4.2rem;        /* ให้ ON/OFF กว้างเท่ากัน */
+      }
+  </style>
 </head>
 
 <body class="bg-info">
+    <!-- Battery Status Bar -->
+  <div id="batteryStatus" class="alert text-center mb-0 sticky-top shadow-sm" 
+     role="alert" style="font-size: 2rem; font-weight: bold;">
+      <i id="batteryIcon" class="fas fa-battery-half"></i>
+      <span id="batteryText">--%</span>
+  </div>
+
+<!-- Font Awesome (for battery icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
   <div class="container bg-light p-4 rounded shadow">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h2 class="m-0"><strong>PLC DIN / DOUT Monitor</strong></h2>
@@ -32,7 +73,7 @@
       <div class="card-body">
         <table class="table table-bordered table-striped text-center" id="dinTable">
           <thead class="thead-light">
-            <tr><th>Pin</th><th>Status</th></tr>
+            <tr><td><div class="io-cell">Pin</div></td><td><div class="io-cell">Status</div></td></tr>
           </thead>
           <tbody></tbody>
         </table>
@@ -49,7 +90,7 @@
       <div class="card-body">
         <table class="table table-bordered table-striped text-center" id="doutTable">
           <thead class="thead-light">
-            <tr><th>Pin</th><th>Status</th><th>Action</th></tr>
+            <tr><th><div class="io-cell">Pin</div></th><th><div class="io-cell">Status</div></th><th><div class="io-cell">Action</div></th></tr>
           </thead>
           <tbody></tbody>
         </table>

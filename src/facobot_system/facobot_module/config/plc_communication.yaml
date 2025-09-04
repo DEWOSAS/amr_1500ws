@@ -6,4 +6,3 @@ modbus_plc:
       module: ""
       module_timeout: 25.00
       battery_level_alarm: 20.0
-      simulate_offline: True
